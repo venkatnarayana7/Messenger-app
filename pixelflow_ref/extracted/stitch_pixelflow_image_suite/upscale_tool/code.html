@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PixelFlow | Upscale Image</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #becabf;
+            border-radius: 10px;
+        }
+        .preview-compare-handle {
+            cursor: ew-resize;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#becabf",
+                        "secondary-container": "#7bf8a1",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#005228",
+                        "surface-container-high": "#e8e8e8",
+                        "inverse-primary": "#7adaa1",
+                        "on-primary-fixed": "#002110",
+                        "on-secondary-container": "#007239",
+                        "secondary": "#006d37",
+                        "secondary-fixed-dim": "#61de8a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#00210c",
+                        "on-tertiary-fixed-variant": "#374b41",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "tertiary-container": "#abc2b4",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary-fixed": "#0b1f16",
+                        "secondary-fixed": "#7efba4",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed-dim": "#7adaa1",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#005230",
+                        "primary-container": "#6fcf97",
+                        "tertiary": "#4e6358",
+                        "surface-dim": "#dadada",
+                        "outline": "#6e7a70",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "primary": "#006d41",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#95f7bb",
+                        "tertiary-fixed": "#d0e8d9",
+                        "on-primary-container": "#005733",
+                        "on-surface-variant": "#3e4941",
+                        "tertiary-fixed-dim": "#b5ccbe",
+                        "on-surface": "#1a1c1c",
+                        "surface-tint": "#006d41",
+                        "on-tertiary-container": "#3b5045"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-tablet": "32px",
+                        "margin-mobile": "20px"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-margin-mobile h-16 z-50">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 duration-100">
+                arrow_back
+            </button>
+<h1 class="font-bold text-headline-md text-primary dark:text-primary-fixed">Upscale Image</h1>
+</div>
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 duration-100">
+            more_vert
+        </button>
+</header>
+<main class="flex-grow p-margin-mobile max-w-5xl mx-auto w-full pb-32">
+<!-- Preview Canvas -->
+<section class="relative w-full aspect-square md:aspect-video rounded-xl overflow-hidden shadow-[0px_8px_24px_rgba(0,0,0,0.04)] bg-surface-container-low mb-lg group">
+<div class="relative w-full h-full select-none overflow-hidden" id="before-after-container">
+<!-- After Image (Upscaled) -->
+<div class="absolute inset-0 w-full h-full" id="after-image">
+<img class="w-full h-full object-cover" data-alt="A high-resolution, crystal clear professional macro photograph of a vibrant tropical flower with intricate dew drops. The image features exceptional detail, sharp edges, and a rich color palette of emerald greens and deep magentas. The lighting is bright and natural, reflecting a premium light-mode UI aesthetic with clean white highlights and soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGrueEVBqRMVPTA54LwQCxWhrE-3pQW4X-mt8LoRsw9P2VJDxEKAV878_tKn0rbuwdondgcEnagdata7m8_mU6wgWZHUnXAjJa7EN977xwDysc5cxYSqF1_UNy3uOaA3mSCyeuhD4wqKTL9b28StQKaXa5iyDkh2RUZ-i8zuuDqR0YAfVIumFOHx8_2OiVGkblyuqfTdzPyXXxjW8jieUYaPQp9DNg4QFnN2-EgsP1U0CR2BQ9RNEO3ee0RjZbfiZGmU2hgYvcPS4"/>
+</div>
+<!-- Before Image (Original) - Clipped -->
+<div class="absolute inset-0 h-full w-1/2 overflow-hidden border-r-2 border-white/50 z-10" id="before-image-clip">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A low-resolution, slightly pixelated original photo of a vibrant tropical flower with soft focus. The colors are muted compared to the high-res version, with visible interpolation artifacts typical of standard digital photography. The scene is bright and airy, maintaining a consistent light-mode brand identity across the comparison." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtUIxTD1wOlrWz_yWQ9xR-O3QXL0bepPhYswT2Q1pPa4ugFRCiitU6znq2VwKavfEwXMWiE-Iu1NP-mG7xDsH9y5q7LVMJ3AOllj8H2i9BYt8hX_v6A90lrtEUb5JBK8VTBC-CLnT7oF6j2VDd8lkP5gq8NuBGCFc4-KlqxUjWtpw2nShGJnO7KZPZOGyYEKKHsdMxlgII-AL9gxbNtnlJ9qExS8dmGFMm43-bMgwOQ7_RUPxiTEwQ-hwyw0DVYdFRlWj17RHZ9_4" style="width: 200%; max-width: none;"/>
+<div class="absolute top-4 left-4 bg-black/40 backdrop-blur-md text-white text-[10px] uppercase tracking-widest px-2 py-1 rounded font-bold">Before</div>
+</div>
+<div class="absolute top-4 right-4 bg-primary/80 backdrop-blur-md text-white text-[10px] uppercase tracking-widest px-2 py-1 rounded font-bold z-20">After</div>
+<!-- Comparison Slider Handle -->
+<div class="absolute top-0 bottom-0 left-1/2 w-1 bg-white shadow-lg z-30 flex items-center justify-center -translate-x-1/2" id="slider-handle">
+<div class="w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">unfold_more_double</span>
+</div>
+</div>
+</div>
+<!-- Side-by-Side Toggle Overlay -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg z-40 border border-outline-variant/30">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Side-by-Side</span>
+<button class="w-10 h-5 bg-primary rounded-full relative transition-colors duration-300" id="toggle-comparison">
+<div class="absolute top-1 left-1 w-3 h-3 bg-white rounded-full transition-all duration-300 translate-x-5"></div>
+</button>
+</div>
+</section>
+<!-- Tool Configuration Bento -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Scaling Logic -->
+<div class="glass-card p-md rounded-xl space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">aspect_ratio</span>
+<h2 class="text-label-lg font-label-lg text-on-surface">Scaling Factor</h2>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-3 px-2 rounded-xl bg-secondary-container text-on-secondary-container font-bold border-2 border-transparent transition-all active:scale-95">2x</button>
+<button class="flex-1 py-3 px-2 rounded-xl bg-surface-container text-on-surface-variant font-bold border-2 border-transparent hover:border-outline-variant transition-all active:scale-95">4x</button>
+<button class="flex-1 py-3 px-2 rounded-xl bg-surface-container text-on-surface-variant font-bold border-2 border-transparent hover:border-outline-variant transition-all active:scale-95">8x</button>
+</div>
+<p class="text-[11px] text-on-surface-variant italic">Upscaling to 8x may result in significant file size increase.</p>
+</div>
+<!-- Methodology Logic -->
+<div class="glass-card p-md rounded-xl space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h2 class="text-label-lg font-label-lg text-on-surface">Methodology</h2>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 rounded-lg bg-secondary-container text-on-secondary-container text-label-sm font-label-sm text-left active:scale-95 transition-all">Nearest Neighbor</button>
+<button class="py-2 px-3 rounded-lg bg-surface-container text-on-surface-variant text-label-sm font-label-sm text-left hover:bg-surface-variant transition-all active:scale-95">Bilinear</button>
+<button class="py-2 px-3 rounded-lg bg-surface-container text-on-surface-variant text-label-sm font-label-sm text-left hover:bg-surface-variant transition-all active:scale-95">Bicubic</button>
+<button class="py-2 px-3 rounded-lg bg-surface-container text-on-surface-variant text-label-sm font-label-sm text-left hover:bg-surface-variant transition-all active:scale-95">Lanczos</button>
+</div>
+</div>
+</div>
+<!-- Export Action -->
+<div class="mt-lg">
+<button class="w-full h-14 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-bold text-lg shadow-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                Export Processed Image
+            </button>
+<p class="text-center text-on-surface-variant text-label-sm mt-md font-label-sm">Privacy guaranteed. All processing occurs locally on device.</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-90 transition-all">
+<span class="material-symbols-outlined">build</span>
+<span class="text-label-sm font-label-sm">Tools</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">history</span>
+<span class="text-label-sm font-label-sm">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="text-label-sm font-label-sm">Premium</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-label-sm font-label-sm">Settings</span>
+</div>
+</nav>
+<script>
+        // Interactive Slider Logic
+        const container = document.getElementById('before-after-container');
+        const slider = document.getElementById('slider-handle');
+        const clip = document.getElementById('before-image-clip');
+        let isDragging = false;
+
+        const moveSlider = (x) => {
+            const rect = container.getBoundingClientRect();
+            let position = ((x - rect.left) / rect.width) * 100;
+            position = Math.max(0, Math.min(100, position));
+            slider.style.left = `${position}%`;
+            clip.style.width = `${position}%`;
+        };
+
+        slider.addEventListener('mousedown', () => isDragging = true);
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.clientX);
+        });
+
+        // Touch support
+        slider.addEventListener('touchstart', () => isDragging = true);
+        window.addEventListener('touchend', () => isDragging = false);
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            moveSlider(e.touches[0].clientX);
+        });
+
+        // Toggle Switch Animation
+        const toggleBtn = document.getElementById('toggle-comparison');
+        const toggleCircle = toggleBtn.querySelector('div');
+        let isSideBySide = true;
+
+        toggleBtn.addEventListener('click', () => {
+            isSideBySide = !isSideBySide;
+            if (isSideBySide) {
+                toggleCircle.classList.add('translate-x-5');
+                toggleBtn.classList.remove('bg-surface-variant');
+                toggleBtn.classList.add('bg-primary');
+            } else {
+                toggleCircle.classList.remove('translate-x-5');
+                toggleBtn.classList.add('bg-surface-variant');
+                toggleBtn.classList.remove('bg-primary');
+                // Reset comparison to center
+                moveSlider(container.getBoundingClientRect().left + container.offsetWidth / 2);
+            }
+        });
+
+        // Method & Scale Selection
+        const buttons = document.querySelectorAll('button[class*="active:scale-95"]');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Find siblings in the same container to reset
+                const parent = this.parentElement;
+                const siblings = parent.querySelectorAll('button');
+                siblings.forEach(s => {
+                    s.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+                    s.classList.add('bg-surface-container', 'text-on-surface-variant');
+                });
+                // Highlight current
+                this.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                this.classList.remove('bg-surface-container', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

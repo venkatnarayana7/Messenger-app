@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#becabf",
+                    "secondary-container": "#7bf8a1",
+                    "surface": "#f9f9f9",
+                    "on-secondary-fixed-variant": "#005228",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-primary": "#7adaa1",
+                    "on-primary-fixed": "#002110",
+                    "on-secondary-container": "#007239",
+                    "secondary": "#006d37",
+                    "secondary-fixed-dim": "#61de8a",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-fixed": "#00210c",
+                    "on-tertiary-fixed-variant": "#374b41",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "tertiary-container": "#abc2b4",
+                    "inverse-on-surface": "#f0f1f1",
+                    "surface-variant": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-fixed": "#0b1f16",
+                    "secondary-fixed": "#7efba4",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "primary-fixed-dim": "#7adaa1",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005230",
+                    "primary-container": "#6fcf97",
+                    "tertiary": "#4e6358",
+                    "surface-dim": "#dadada",
+                    "outline": "#6e7a70",
+                    "surface-bright": "#f9f9f9",
+                    "on-error": "#ffffff",
+                    "primary": "#006d41",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#95f7bb",
+                    "tertiary-fixed": "#d0e8d9",
+                    "on-primary-container": "#005733",
+                    "on-surface-variant": "#3e4941",
+                    "tertiary-fixed-dim": "#b5ccbe",
+                    "on-surface": "#1a1c1c",
+                    "surface-tint": "#006d41",
+                    "on-tertiary-container": "#3b5045"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "margin-tablet": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "label-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #006d41;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm z-50 flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-variant/50 transition-colors active:scale-95 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Resize Image</h1>
+</div>
+<button class="hover:bg-surface-variant/50 transition-colors active:scale-95 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">more_vert</span>
+</button>
+</header>
+<main class="px-margin-mobile pt-lg space-y-lg">
+<!-- Image Upload/Preview Area -->
+<section class="w-full">
+<div class="glass-card rounded-xl overflow-hidden relative group cursor-pointer border-2 border-dashed border-outline-variant hover:border-primary transition-all">
+<div class="aspect-video w-full relative">
+<img class="w-full h-full object-cover opacity-60" data-alt="A professional-grade photography scene featuring a high-end mirrorless camera on a minimalist wooden desk. The lighting is soft and natural, coming from a large side window, creating a serene and productive workspace mood. The color palette is dominated by clean whites, light oak textures, and subtle emerald green accents from a small succulent nearby. The image represents premium digital creation and high-quality image processing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAarPMm1JISQaKuQCvn-ZXk933RZMuTDpmbepMkuqs3cdIm63NKa_gvFrIuWeSgsxCeN11vQ8njTYPYHtM9nCWud9GRgom6AjJ9FvR9YS7ujnQAU5-MDgtKziQcsnH0O_vsprtxPsR1EBs8U5rjR1tk5DM3Nz8FJOoWpXD9HeFCXGBObp36bQhyhyyEkZO21Yi2TP3_uBo0j1GPesZLv1Wy_ASVT7Gx9_rCmqk-vyp4ie3Kz86wFx5MsDGqQCg8Dvni2aJDi34Ltmo"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center space-y-2">
+<div class="bg-primary/10 p-4 rounded-full">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<p class="font-label-lg text-label-lg text-on-surface-variant">Tap to change image</p>
+<p class="font-label-sm text-label-sm text-outline">Current: landscape_photo.jpg (2.4 MB)</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Resize Form -->
+<section class="space-y-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-on-surface">Dimensions</h2>
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lock Aspect Ratio</span>
+<button class="w-10 h-6 bg-primary rounded-full relative transition-colors duration-200" id="aspectToggle">
+<div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full shadow-sm"></div>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-outline ml-2">Width (px)</label>
+<input class="w-full h-14 bg-surface-container-low border-outline-variant border rounded-xl px-4 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md" type="number" value="1920"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-outline ml-2">Height (px)</label>
+<input class="w-full h-14 bg-surface-container-low border-outline-variant border rounded-xl px-4 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md" type="number" value="1080"/>
+</div>
+</div>
+</section>
+<!-- Percentage Slider -->
+<section class="space-y-sm bg-surface-container-low p-lg rounded-xl">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-lg text-label-lg text-on-surface">Scale Percentage</span>
+<span class="font-headline-md text-headline-md text-primary font-bold" id="pctValue">100%</span>
+</div>
+<input class="w-full h-2 bg-outline-variant rounded-lg appearance-none cursor-pointer custom-slider" max="100" min="0" oninput="document.getElementById('pctValue').innerText = this.value + '%'" type="range" value="100"/>
+<div class="flex justify-between text-outline font-label-sm text-label-sm px-1">
+<span>0%</span>
+<span>50%</span>
+<span>100%</span>
+</div>
+</section>
+<!-- Preset Chips -->
+<section class="space-y-md">
+<h3 class="font-label-lg text-label-lg text-on-surface">Presets</h3>
+<div class="flex flex-wrap gap-sm">
+<button class="px-4 py-2 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm hover:brightness-95 transition-all">Instagram</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all">Facebook</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all">YouTube</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all">WhatsApp</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all">HD</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all">4K</button>
+</div>
+</section>
+<!-- Action Buttons -->
+<section class="flex flex-col gap-md pt-md">
+<button class="w-full h-[56px] bg-gradient-to-r from-primary to-secondary text-white rounded-full font-headline-md text-headline-md shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">photo_size_select_large</span>
+                Resize
+            </button>
+<button class="w-full h-[56px] bg-secondary-fixed text-on-secondary-fixed rounded-full font-headline-md text-headline-md border border-outline-variant active:scale-95 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                Download
+            </button>
+</section>
+<!-- Footer Notice -->
+<footer class="flex items-center justify-center gap-2 text-outline py-md">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<p class="font-label-sm text-label-sm">No watermarks will be added.</p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Premium</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for toggle
+        const aspectToggle = document.getElementById('aspectToggle');
+        let isLocked = true;
+        aspectToggle.addEventListener('click', () => {
+            isLocked = !isLocked;
+            const knob = aspectToggle.querySelector('div');
+            if (isLocked) {
+                aspectToggle.classList.replace('bg-outline-variant', 'bg-primary');
+                knob.classList.replace('left-1', 'right-1');
+            } else {
+                aspectToggle.classList.replace('bg-primary', 'bg-outline-variant');
+                knob.classList.replace('right-1', 'left-1');
+            }
+        });
+
+        // Add ripple-like effect on buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('mousedown', function(e) {
+                this.classList.add('scale-95');
+            });
+            btn.addEventListener('mouseup', function(e) {
+                this.classList.remove('scale-95');
+            });
+            btn.addEventListener('mouseleave', function(e) {
+                this.classList.remove('scale-95');
+            });
+        });
+    </script>
+</body></html>

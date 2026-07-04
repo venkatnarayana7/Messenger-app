@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Rounded green tile with a subtle sparkle mark -->
+    <path
+        android:pathData="M30,30 L78,30 A6,6 0 0 1 84,36 L84,72 A6,6 0 0 1 78,78 L30,78 A6,6 0 0 1 24,72 L24,36 A6,6 0 0 1 30,30 z"
+        android:fillColor="#27AE60" />
+    <path
+        android:pathData="M50,44 L54,54 L64,58 L54,62 L50,72 L46,62 L36,58 L46,54 z"
+        android:fillColor="#FFFFFF" />
+    <path
+        android:pathData="M66,42 L68,47 L73,49 L68,51 L66,56 L64,51 L59,49 L64,47 z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.85" />
+</vector>

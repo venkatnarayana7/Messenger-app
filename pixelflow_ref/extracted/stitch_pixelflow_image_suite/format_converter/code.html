@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PixelFlow - Convert Format</title>
+<!-- Google Fonts: Manrope & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#becabf",
+                        "secondary-container": "#7bf8a1",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#005228",
+                        "surface-container-high": "#e8e8e8",
+                        "inverse-primary": "#7adaa1",
+                        "on-primary-fixed": "#002110",
+                        "on-secondary-container": "#007239",
+                        "secondary": "#006d37",
+                        "secondary-fixed-dim": "#61de8a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#00210c",
+                        "on-tertiary-fixed-variant": "#374b41",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "tertiary-container": "#abc2b4",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary-fixed": "#0b1f16",
+                        "secondary-fixed": "#7efba4",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed-dim": "#7adaa1",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#005230",
+                        "primary-container": "#6fcf97",
+                        "tertiary": "#4e6358",
+                        "surface-dim": "#dadada",
+                        "outline": "#6e7a70",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "primary": "#006d41",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#95f7bb",
+                        "tertiary-fixed": "#d0e8d9",
+                        "on-primary-container": "#005733",
+                        "on-surface-variant": "#3e4941",
+                        "tertiary-fixed-dim": "#b5ccbe",
+                        "on-surface": "#1a1c1c",
+                        "surface-tint": "#006d41",
+                        "on-tertiary-container": "#3b5045"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-tablet": "32px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #006d41;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 4px solid #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .custom-range::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #006d41;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 4px solid #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-margin-mobile h-16">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors active:scale-95 p-2 rounded-full" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Convert Format</h1>
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors active:scale-95 p-2 rounded-full" data-icon="more_vert">more_vert</button>
+</header>
+<main class="px-margin-mobile pt-lg flex flex-col gap-lg">
+<!-- Upload Area (Bento Grid Main Item) -->
+<section class="relative overflow-hidden glass-card rounded-[24px] border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center p-xl transition-all duration-300 hover:border-primary/50 group cursor-pointer" id="drop-zone">
+
+<div class="relative z-10 flex flex-col items-center gap-md">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shadow-sm transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined !text-[32px]" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-headline-md text-on-surface">Select Image</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Drag and drop or click to browse</p>
+</div>
+<div class="flex gap-sm mt-sm">
+<span class="font-label-sm text-label-sm px-3 py-1 bg-surface-container rounded-full text-on-surface-variant">PNG</span>
+<span class="font-label-sm text-label-sm px-3 py-1 bg-surface-container rounded-full text-on-surface-variant">HEIC</span>
+<span class="font-label-sm text-label-sm px-3 py-1 bg-surface-container rounded-full text-on-surface-variant">WEBP</span>
+</div>
+</div>
+<input accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</section>
+<!-- Configuration Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Output Format Grid -->
+<section class="glass-card rounded-[24px] p-md flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="transform">transform</span>
+<h2 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Output Format</h2>
+</div>
+<div class="grid grid-cols-4 gap-sm">
+<!-- Format Chips -->
+<button class="format-chip active h-12 flex items-center justify-center rounded-xl bg-secondary-container text-on-secondary-container font-label-lg transition-all active:scale-95" onclick="selectFormat(this)">JPG</button>
+<button class="format-chip h-12 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-label-lg hover:bg-surface-variant/50 transition-all active:scale-95" onclick="selectFormat(this)">PNG</button>
+<button class="format-chip h-12 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-label-lg hover:bg-surface-variant/50 transition-all active:scale-95" onclick="selectFormat(this)">WEBP</button>
+<button class="format-chip h-12 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-label-lg hover:bg-surface-variant/50 transition-all active:scale-95" onclick="selectFormat(this)">BMP</button>
+<button class="format-chip h-12 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-label-lg hover:bg-surface-variant/50 transition-all active:scale-95" onclick="selectFormat(this)">TIFF</button>
+<button class="format-chip h-12 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-label-lg hover:bg-surface-variant/50 transition-all active:scale-95" onclick="selectFormat(this)">GIF</button>
+<button class="format-chip h-12 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-label-lg hover:bg-surface-variant/50 transition-all active:scale-95" onclick="selectFormat(this)">HEIC</button>
+<button class="format-chip h-12 flex items-center justify-center rounded-xl bg-surface-container-low text-on-surface-variant font-label-lg hover:bg-surface-variant/50 transition-all active:scale-95" onclick="selectFormat(this)">ICO</button>
+</div>
+</section>
+<!-- Quality & Settings -->
+<section class="glass-card rounded-[24px] p-md flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="tune">tune</span>
+<h2 class="font-label-lg text-label-lg text-on-surface uppercase tracking-wider">Quality Settings</h2>
+</div>
+<span class="font-headline-md text-headline-md text-primary" id="quality-value">85%</span>
+</div>
+<div class="flex flex-col gap-xs mt-2">
+<input class="custom-range w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="1" oninput="updateQuality(this.value)" type="range" value="85"/>
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Smallest File</span>
+<span>Highest Quality</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-sm bg-surface-container-low rounded-xl mt-auto">
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface">Preserve EXIF</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">Metadata, Location, Date</span>
+</div>
+<button class="w-10 h-6 bg-primary rounded-full relative flex items-center transition-all px-1">
+<div class="w-4 h-4 bg-white rounded-full ml-auto"></div>
+</button>
+</div>
+</section>
+</div>
+<!-- Action Area -->
+<div class="flex flex-col gap-md mt-md">
+<button class="h-14 w-full bg-gradient-to-r from-primary to-[#005733] text-white rounded-full font-headline-md text-headline-md flex items-center justify-center gap-sm shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="auto_fix_high">auto_fix_high</span>
+                Convert
+            </button>
+<div class="flex gap-md">
+<button class="flex-1 h-14 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-lg text-label-lg flex items-center justify-center gap-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="save">save</span>
+                    Save to Device
+                </button>
+<button class="w-14 h-14 bg-surface-container rounded-full text-on-surface-variant flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</div>
+<!-- Preview (Appears after upload) -->
+<div class="mt-md">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider mb-sm">Sample Preview</h3>
+<div class="glass-card rounded-[24px] overflow-hidden p-4 flex flex-col gap-4">
+<div class="aspect-video w-full rounded-xl overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist high-key photograph of a sleek silver mirrorless camera resting on a white marble surface. The lighting is soft and diffused, creating a professional and premium product photography aesthetic. Subtle shadows add depth, while the overall mood remains airy and efficient, reflecting a high-end digital tool's identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzVhDeBCNuwUN6i-3Y1AagudsEXZLorBGTp0c70oc5RWN2ALzF8iyWrPiFBklvbmQ8qZjqKTmwZHKWaSvVRRPrVifezRU1rXh6gUG__Cto9zJ9N9aF9yRSb1_8qsDjKW38KTLN6JgTRselZtb6GKEdju3goJm9U12z4tKX4Ue0nwl7-amMLA_9BCaN1179WKp1_iU85YtI5RS8KrmXfgb2HPgm5_DfIclzcgFPabDYuwJoR_KLQnXlxQ-Gw7pZY-FJVSwHY_-hv4w"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-white font-label-lg">Original Preview</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-lg text-on-surface">camera_capture_01.heic</span>
+<span class="font-label-sm text-on-surface-variant">4.2 MB • 4032 × 3024</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-lg text-primary">Ready to JPG</span>
+<span class="font-label-sm text-on-surface-variant">~1.1 MB predicted</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl flex justify-around items-center px-4 pb-4 pt-2 shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all">
+<span class="material-symbols-outlined" data-icon="build">build</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="workspace_premium">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Premium</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+<script>
+        function selectFormat(btn) {
+            // Remove active from all siblings
+            const chips = document.querySelectorAll('.format-chip');
+            chips.forEach(chip => {
+                chip.classList.remove('active', 'bg-secondary-container', 'text-on-secondary-container');
+                chip.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+            });
+            
+            // Add active to current
+            btn.classList.add('active', 'bg-secondary-container', 'text-on-secondary-container');
+            btn.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+        }
+
+        function updateQuality(val) {
+            document.getElementById('quality-value').textContent = val + '%';
+        }
+
+        // Simple drag and drop visual feedback
+        const dropZone = document.getElementById('drop-zone');
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, e => {
+                e.preventDefault();
+                dropZone.classList.add('border-primary', 'bg-primary/5');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, e => {
+                e.preventDefault();
+                dropZone.classList.remove('border-primary', 'bg-primary/5');
+            });
+        });
+    </script>
+</body></html>

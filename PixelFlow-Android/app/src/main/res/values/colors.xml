@@ -1,0 +1,8 @@
+<resources>
+    <color name="pf_primary">#27AE60</color>
+    <color name="pf_primary_light">#6FCF97</color>
+    <color name="pf_mint">#DFF7E8</color>
+    <color name="pf_background">#FFFFFF</color>
+    <color name="pf_black">#0F1712</color>
+    <color name="ic_launcher_background">#DFF7E8</color>
+</resources>

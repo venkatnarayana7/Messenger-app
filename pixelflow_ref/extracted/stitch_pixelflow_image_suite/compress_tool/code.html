@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Compress Image - PixelFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline-variant": "#becabf",
+                      "secondary-container": "#7bf8a1",
+                      "surface": "#f9f9f9",
+                      "on-secondary-fixed-variant": "#005228",
+                      "surface-container-high": "#e8e8e8",
+                      "inverse-primary": "#7adaa1",
+                      "on-primary-fixed": "#002110",
+                      "on-secondary-container": "#007239",
+                      "secondary": "#006d37",
+                      "secondary-fixed-dim": "#61de8a",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-background": "#1a1c1c",
+                      "on-secondary-fixed": "#00210c",
+                      "on-tertiary-fixed-variant": "#374b41",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container": "#eeeeee",
+                      "tertiary-container": "#abc2b4",
+                      "inverse-on-surface": "#f0f1f1",
+                      "surface-variant": "#e2e2e2",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f3f3f4",
+                      "on-tertiary-fixed": "#0b1f16",
+                      "secondary-fixed": "#7efba4",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#2f3131",
+                      "primary-fixed-dim": "#7adaa1",
+                      "on-primary": "#ffffff",
+                      "background": "#f9f9f9",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#005230",
+                      "primary-container": "#6fcf97",
+                      "tertiary": "#4e6358",
+                      "surface-dim": "#dadada",
+                      "outline": "#6e7a70",
+                      "surface-bright": "#f9f9f9",
+                      "on-error": "#ffffff",
+                      "primary": "#006d41",
+                      "error": "#ba1a1a",
+                      "primary-fixed": "#95f7bb",
+                      "tertiary-fixed": "#d0e8d9",
+                      "on-primary-container": "#005733",
+                      "on-surface-variant": "#3e4941",
+                      "tertiary-fixed-dim": "#b5ccbe",
+                      "on-surface": "#1a1c1c",
+                      "surface-tint": "#006d41",
+                      "on-tertiary-container": "#3b5045"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "xl": "32px",
+                      "base": "4px",
+                      "xs": "4px",
+                      "sm": "8px",
+                      "md": "16px",
+                      "lg": "24px",
+                      "margin-tablet": "32px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "label-lg": ["Manrope"],
+                      "body-md": ["Manrope"],
+                      "headline-lg-mobile": ["Manrope"],
+                      "headline-md": ["Manrope"],
+                      "headline-lg": ["Manrope"],
+                      "body-lg": ["Manrope"],
+                      "display-lg": ["Manrope"],
+                      "label-sm": ["Manrope"]
+              },
+              "fontSize": {
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer; }
+        input[type="range"]::-webkit-slider-runnable-track { background: #e5e7eb; border-radius: 999px; height: 8px; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; margin-top: -6px; background-color: #006d41; border-radius: 999px; height: 20px; width: 20px; border: 3px solid white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .image-container-inner { border: 1px solid rgba(0,0,0,0.05); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Compress Image</h1>
+</div>
+<button class="hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</header>
+<main class="px-margin-mobile pt-lg flex flex-col gap-lg max-w-2xl mx-auto">
+<!-- Image Preview Card -->
+<section class="relative aspect-[4/3] w-full rounded-xl overflow-hidden shadow-[0px_8px_24px_rgba(0,0,0,0.04)] bg-surface-container-lowest">
+<div class="relative w-full h-full" id="preview-viewport">
+<img class="w-full h-full object-cover" data-alt="A close-up, high-definition photograph of a lush monstera leaf with vibrant green textures, captured in soft, natural morning light. The composition is minimalist and premium, following a clean light-mode aesthetic with subtle shadows and emerald green tones. The image showcases intricate details of the leaf veins against a pure white architectural background, conveying a sense of organic elegance and professional digital clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBED3F2yPCo2WeNNg9cl9ohiEGEOfikMMVIOBHSoA3Xl84Zj_7rOMxl6RjfGt2Enx7DP9VSvpUuqv_64yZnngkFzaQDF__RNGg0wX50lNMcr2_i_HywrqrReHjH-36foZIupJqkQQczry1MHgph5rUZwBKl7MVNaN6gXBxCtK5acjcvypTGcC1N4TN4B2Q5TUGkS8r3aEB_pCdXYVs09euON38PmjNU0XhOg1DTG-yGdKNaxSS7jUBfXr1e2s1ElOvLlk9lUiHFVQY"/>
+<!-- Side-by-side comparison overlay (hidden by default, toggled via Compare) -->
+<div class="absolute inset-0 w-0 h-full overflow-hidden border-r-2 border-primary z-10 hidden transition-[width] duration-300" id="compare-overlay">
+<img class="absolute inset-0 w-[100vw] max-w-none h-full object-cover" data-alt="A pixelated or slightly compressed version of the same monstera leaf image, maintaining the same emerald green and white palette but with visible compression artifacts for comparison. The lighting remains soft and natural, but the fine details of the leaf veins are softened. This visual comparison illustrates the efficacy of an image compression tool in a professional UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCrLgjDLgyCwCS9P1wroJpVxMjznI5xigpmylr8c8NWBnDLJZKySQ_Yphq_6rqVZR1pr5Wq7L82gh6HR9xgxzbJHdvshcUGKdv6YwE0Jya1_JXahieWVb4Nd9Vflxt9kp0tKcNnqPT4yF8at8PfXDSFtAOI4N8w7wgZOtiKGQlNYA14L8ziWTPZ_Z1oMMQ5Ki4NmAAEJeC8nrmrcq6LCUvn9_L1fcSxJ8s0PGyQ0IEGpDdGQEcj2YK7FGKUT75QwJsBpN6z2JiAXI"/>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="flex flex-col gap-1">
+<span class="bg-primary/90 text-on-primary px-3 py-1 rounded-full text-label-sm font-label-sm flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">photo_size_select_small</span>
+                        Original: 4.2 MB
+                    </span>
+</div>
+<button class="bg-surface/90 hover:bg-surface text-primary p-3 rounded-xl shadow-lg transition-all active:scale-95 flex items-center gap-2 backdrop-blur-md" id="compare-btn">
+<span class="material-symbols-outlined">compare</span>
+<span class="font-label-lg text-label-lg">Compare</span>
+</button>
+</div>
+</section>
+<!-- Tool Controls -->
+<section class="flex flex-col gap-md p-md bg-surface-container-low rounded-xl">
+<div class="flex justify-between items-center mb-base">
+<h3 class="font-label-lg text-label-lg text-on-surface-variant">Compression Quality</h3>
+<span class="font-headline-md text-headline-md text-primary" id="quality-value">85%</span>
+</div>
+<input class="w-full h-2 rounded-full" id="quality-slider" max="100" min="1" type="range" value="85"/>
+<div class="flex justify-between items-center mt-sm">
+<div class="flex flex-col">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Estimated Size</span>
+<span class="text-body-lg font-body-lg font-bold text-secondary" id="estimated-size">642 KB</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Saving</span>
+<span class="text-body-lg font-body-lg font-bold text-on-secondary-container bg-secondary-container px-2 rounded-lg" id="saving-percent">85%</span>
+</div>
+</div>
+</section>
+<!-- Info Chips -->
+<section class="flex flex-wrap gap-sm">
+<div class="flex items-center gap-2 px-3 py-2 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                Privacy-First (On-device)
+            </div>
+<div class="flex items-center gap-2 px-3 py-2 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                Lossless Optimization
+            </div>
+</section>
+<!-- Actions -->
+<section class="flex flex-col gap-md pt-md">
+<button class="h-14 w-full bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-label-lg text-label-lg shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">compress</span>
+                Compress &amp; Save
+            </button>
+<button class="h-14 w-full bg-surface-container-highest text-primary rounded-xl font-label-lg text-label-lg hover:bg-surface-variant active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                Download High-Res
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Premium</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+<script>
+        const slider = document.getElementById('quality-slider');
+        const qualityVal = document.getElementById('quality-value');
+        const estimatedSize = document.getElementById('estimated-size');
+        const savingPercent = document.getElementById('saving-percent');
+        const compareBtn = document.getElementById('compare-btn');
+        const compareOverlay = document.getElementById('compare-overlay');
+
+        // Quality Slider Logic
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            qualityVal.textContent = val + '%';
+            
+            // Simple visual simulation of file size calculation
+            const baseSize = 4200; // 4.2 MB in KB
+            const ratio = (val / 100) * 0.9 + 0.1; // scale quality to size
+            const est = Math.round(baseSize * (val / 100) * (val / 100)); // quadratic for more realistic drop
+            
+            estimatedSize.textContent = est > 1024 ? (est/1024).toFixed(1) + ' MB' : est + ' KB';
+            savingPercent.textContent = (100 - (est/baseSize*100)).toFixed(0) + '%';
+        });
+
+        // Compare Toggle Logic
+        let isComparing = false;
+        compareBtn.addEventListener('click', () => {
+            isComparing = !isComparing;
+            if (isComparing) {
+                compareOverlay.classList.remove('hidden');
+                setTimeout(() => {
+                    compareOverlay.style.width = '50%';
+                }, 10);
+                compareBtn.classList.add('bg-primary', 'text-white');
+                compareBtn.classList.remove('bg-surface/90', 'text-primary');
+            } else {
+                compareOverlay.style.width = '0%';
+                setTimeout(() => {
+                    compareOverlay.classList.add('hidden');
+                }, 300);
+                compareBtn.classList.remove('bg-primary', 'text-white');
+                compareBtn.classList.add('bg-surface/90', 'text-primary');
+            }
+        });
+
+        // Slider side-by-side drag simulation on preview viewport
+        const viewport = document.getElementById('preview-viewport');
+        viewport.addEventListener('mousemove', (e) => {
+            if (isComparing) {
+                const rect = viewport.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const widthPercent = (x / rect.width) * 100;
+                compareOverlay.style.width = widthPercent + '%';
+            }
+        });
+
+        viewport.addEventListener('touchmove', (e) => {
+            if (isComparing) {
+                const rect = viewport.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const widthPercent = (x / rect.width) * 100;
+                compareOverlay.style.width = widthPercent + '%';
+            }
+        });
+    </script>
+</body></html>

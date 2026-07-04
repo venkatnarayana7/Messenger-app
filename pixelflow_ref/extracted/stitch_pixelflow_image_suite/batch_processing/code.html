@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Batch Processing - PixelFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#becabf",
+                        "secondary-container": "#7bf8a1",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#005228",
+                        "surface-container-high": "#e8e8e8",
+                        "inverse-primary": "#7adaa1",
+                        "on-primary-fixed": "#002110",
+                        "on-secondary-container": "#007239",
+                        "secondary": "#006d37",
+                        "secondary-fixed-dim": "#61de8a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#00210c",
+                        "on-tertiary-fixed-variant": "#374b41",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "tertiary-container": "#abc2b4",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary-fixed": "#0b1f16",
+                        "secondary-fixed": "#7efba4",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed-dim": "#7adaa1",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#005230",
+                        "primary-container": "#6fcf97",
+                        "tertiary": "#4e6358",
+                        "surface-dim": "#dadada",
+                        "outline": "#6e7a70",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "primary": "#006d41",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#95f7bb",
+                        "tertiary-fixed": "#d0e8d9",
+                        "on-primary-container": "#005733",
+                        "on-surface-variant": "#3e4941",
+                        "tertiary-fixed-dim": "#b5ccbe",
+                        "on-surface": "#1a1c1c",
+                        "surface-tint": "#006d41",
+                        "on-tertiary-container": "#3b5045"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-tablet": "32px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-bar-fill {
+            transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl z-50 shadow-sm">
+<div class="flex justify-between items-center px-margin-mobile h-16 w-full">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Batch Processing</h1>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-lg space-y-lg">
+<!-- Overall Progress Section (Bento Inspired) -->
+<section class="glass-card rounded-xl p-lg flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Overall Progress</span>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary">74%</p>
+</div>
+<div class="text-right">
+<span class="font-label-lg text-label-lg text-secondary">Processing 12 / 16</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-gradient-to-r from-primary to-primary-container" style="width: 74%;"></div>
+</div>
+<div class="flex items-center justify-between pt-sm">
+<div class="flex items-center gap-sm">
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="toggle-settings" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+<label class="font-label-lg text-label-lg text-on-surface" for="toggle-settings">Apply same settings</label>
+</div>
+<button class="bg-secondary-container text-on-secondary-container px-lg py-sm rounded-full font-label-lg text-label-lg hover:brightness-95 transition-all active:scale-95">
+                    Download All
+                </button>
+</div>
+</section>
+<!-- Manageable List Layout -->
+<section class="space-y-md">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Active Queue</h2>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full font-label-sm text-label-sm">4 Remaining</span>
+</div>
+<!-- List Item 1: Complete -->
+<div class="glass-card rounded-xl p-md flex items-center gap-md border border-transparent hover:border-primary/10 transition-colors">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-black/5">
+<img class="w-full h-full object-cover" data-alt="A macro photography shot of a vibrant green leaf with intricate dewdrops, captured in soft morning light. The visual style is crisp, professional, and minimalist, emphasizing the textures of the leaf against a blurred forest background in tones of emerald and mint." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3qxD1QciBdx0dNhkojrIzNjmeVmyTWqFt3_fqVHrs696Y0r-UrlXRZl06NfDLNz4riM6b8m_KbJzWO0U_zKdkwpGbSTZnbXXe5JImU4KiAPUP4azJ7FLwSbLjk1c-nOrIgxxTxToIcS0j6YxWe0scrDYHBqyvxBRZMaqJamXizRdiwa0nO_jEFTMCvpUz_CGZS70Mv9oQ5lJPHr1C-HIEBzZ6oo_8IM8A7mIcHp0080gF702tDsPtxBMsVnxKqLl2U1Qalu4nXVI"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface truncate">nature_shot_01.jpg</p>
+<p class="font-label-sm text-label-sm text-secondary">Enhanced • 4.2 MB</p>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-variant/50">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<!-- List Item 2: Processing -->
+<div class="glass-card rounded-xl p-md flex items-center gap-md border border-primary/20 bg-primary/5">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A clean, minimalist workspace scene featuring a designer's desk with a sleek laptop and a small succulent. The lighting is bright and airy, following a modern light-mode aesthetic with soft shadows. The color palette consists of whites, grays, and subtle emerald green accents from the plant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2t1H_n_iKilyaLIfIexdx3NJIle23RvYvYczFG4OLpHTjYiAex2svK5D7LtI5mnB6EeU-NJys3qo_ev3oCOI2zriwUWqyrZuHW4huN3kOzqkeq-6BzdpPTqej5I0m48iACUS1WkfCV-piYWqhrnba0tc8NxKl0xO22CM3COt6ysvc0mIO700lQs9oR7geA_w-LBMz99wbg0I1sUoEYAp2KX1KxHKv-Q1rlC7WilSkA4KTVCAZjUuS1hsTTBf7RRSXWJeiNRUSezc"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+</div>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface truncate">workspace_interior.png</p>
+<div class="w-full h-1.5 bg-surface-container rounded-full mt-1.5 overflow-hidden">
+<div class="h-full bg-primary" style="width: 45%;"></div>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-error hover:bg-error-container/50">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- List Item 3: Queued -->
+<div class="glass-card rounded-xl p-md flex items-center gap-md opacity-70">
+<div class="w-16 h-16 bg-surface-container rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover grayscale" data-alt="A minimalist architectural detail of a modern white building against a clear blue sky. The visual language is high-contrast and sharp, focusing on clean lines and geometric shapes. The atmosphere is serene and efficient, reflecting a premium utility-focused design aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk61_EQXnJbgse-wbxwXdrgdT0R0w9TNh0zZDuVhu_YKKOkSwOLZlV6bxjyeFVc77bzkDJShIdGDytBE5MlfFLQMgeYx4bdcPoZOZ5cBeS_1WXIWIZvXc-WQWSuaKcS2lA9H38Jm7nMXqPREl2APs41AVOEybGwuSeh8e3menw5_42S55C-_FDNB9-cmg_5RM94H-fI1lcCMC3WP0YkWSFRdGCFILQkDJvY5RFhLLsxCJ7jWNjYPawAOyCH3YCKHcdBmkW_febKqY"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface truncate">arch_abstract_v2.tiff</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Waiting in queue</p>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">drag_indicator</span>
+</button>
+</div>
+<!-- List Item 4: Queued -->
+<div class="glass-card rounded-xl p-md flex items-center gap-md opacity-70">
+<div class="w-16 h-16 bg-surface-container rounded-lg overflow-hidden shrink-0 flex items-center justify-center">
+<img class="w-full h-full object-cover grayscale" data-alt="A professional portrait of a person in a minimalist studio setting, characterized by soft, high-key lighting and a neutral background. The mood is calm and professional, with a color palette emphasizing emerald and mint green highlights in the subject's clothing, maintaining a cohesive brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNpgjLARZy59HA0-4pEvfG6_KdkQVStqaquR2CrNLKI4FsbQEEHaEQflrqjtZidkna5yEwKbOui4yNprfPANTBkoqZzAk42VewGG-zKE-_sC3lDDJSMUgKq_AuG-qf51dhLYXhE1l1qz2xHicLYIH_mqiHoq_Q_tIe2wP0MTe2rcaiWZNEIpaUiNCRD_Du7dMppCrGIzM4D5RGoOvvUjKcB6tVJvLRdZAg2SFvDg0BXjU3u_QWIWB9RIyEZaHSMUbH1q3asEg_BVI"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface truncate">portrait_session_final.jpg</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Waiting in queue</p>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">drag_indicator</span>
+</button>
+</div>
+</section>
+<!-- Advanced Action Area -->
+<section class="grid grid-cols-2 gap-md">
+<div class="glass-card rounded-xl p-md flex flex-col items-center justify-center gap-sm text-center">
+<span class="material-symbols-outlined text-primary text-3xl">add_photo_alternate</span>
+<span class="font-label-lg text-label-lg text-on-surface">Add Images</span>
+</div>
+<div class="glass-card rounded-xl p-md flex flex-col items-center justify-center gap-sm text-center">
+<span class="material-symbols-outlined text-tertiary text-3xl">tune</span>
+<span class="font-label-lg text-label-lg text-on-surface">Global Settings</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">build</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Premium</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for list item hover/tap
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border 0.3s ease';
+        });
+
+        // Simple animation to simulate progress update
+        setInterval(() => {
+            const fill = document.querySelector('.progress-bar-fill');
+            if (fill) {
+                const currentWidth = parseInt(fill.style.width);
+                if (currentWidth < 98) {
+                    fill.style.width = (currentWidth + 0.1) + '%';
+                }
+            }
+        }, 1000);
+    </script>
+</body></html>

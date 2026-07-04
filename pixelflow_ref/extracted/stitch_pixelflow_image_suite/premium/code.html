@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PixelFlow Premium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#becabf",
+                    "secondary-container": "#7bf8a1",
+                    "surface": "#f9f9f9",
+                    "on-secondary-fixed-variant": "#005228",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-primary": "#7adaa1",
+                    "on-primary-fixed": "#002110",
+                    "on-secondary-container": "#007239",
+                    "secondary": "#006d37",
+                    "secondary-fixed-dim": "#61de8a",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-fixed": "#00210c",
+                    "on-tertiary-fixed-variant": "#374b41",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "tertiary-container": "#abc2b4",
+                    "inverse-on-surface": "#f0f1f1",
+                    "surface-variant": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-fixed": "#0b1f16",
+                    "secondary-fixed": "#7efba4",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "primary-fixed-dim": "#7adaa1",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005230",
+                    "primary-container": "#6fcf97",
+                    "tertiary": "#4e6358",
+                    "surface-dim": "#dadada",
+                    "outline": "#6e7a70",
+                    "surface-bright": "#f9f9f9",
+                    "on-error": "#ffffff",
+                    "primary": "#006d41",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#95f7bb",
+                    "tertiary-fixed": "#d0e8d9",
+                    "on-primary-container": "#005733",
+                    "on-surface-variant": "#3e4941",
+                    "tertiary-fixed-dim": "#b5ccbe",
+                    "on-surface": "#1a1c1c",
+                    "surface-tint": "#006d41",
+                    "on-tertiary-container": "#3b5045"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "margin-tablet": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "label-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f9f9f9; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-card-gradient {
+            background: linear-gradient(135deg, #006d41 0%, #6fcf97 100%);
+        }
+        .glass-overlay {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Anchor -->
+<header class="sticky top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm z-50 h-16 flex justify-between items-center px-margin-mobile">
+<div class="flex items-center gap-2 transition-transform duration-100 active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">PixelFlow</h1>
+<div class="flex items-center gap-2 transition-transform duration-100 active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">more_vert</span>
+</div>
+</header>
+<main class="flex-grow px-margin-mobile py-lg overflow-y-auto pb-32">
+<!-- Premium Hero Card -->
+<section class="relative overflow-hidden premium-card-gradient rounded-[32px] p-8 shadow-2xl text-on-primary mb-lg">
+<!-- Decorative Elements -->
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-8 -left-8 w-32 h-32 bg-secondary-container/20 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md mb-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-lg text-label-lg uppercase tracking-wider">Ultimate Tier</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-white mb-sm">PixelFlow Premium</h2>
+<p class="font-body-lg text-body-lg text-white/90 max-w-xs leading-snug">
+                    Elevate your creative workflow with professional tools and zero limits.
+                </p>
+</div>
+<!-- Benefit Grid -->
+<div class="relative z-10 mt-xl space-y-md">
+<div class="flex items-center gap-md group">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-white">layers</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-white">Unlimited batch processing</h4>
+<p class="font-label-sm text-label-sm text-white/70">Process hundreds of assets at once.</p>
+</div>
+</div>
+<div class="flex items-center gap-md group">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-white">cloud_upload</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-white">Unlimited file size</h4>
+<p class="font-label-sm text-label-sm text-white/70">No restrictions on your heavy raw files.</p>
+</div>
+</div>
+<div class="flex items-center gap-md group">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-white">export_notes</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-white">More export options</h4>
+<p class="font-label-sm text-label-sm text-white/70">PROres, WebP, and advanced metadata.</p>
+</div>
+</div>
+<div class="flex items-center gap-md group">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-white">Faster processing</h4>
+<p class="font-label-sm text-label-sm text-white/70">Priority GPU acceleration on our servers.</p>
+</div>
+</div>
+<div class="flex items-center gap-md group">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-white">update</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-white">Lifetime updates</h4>
+<p class="font-label-sm text-label-sm text-white/70">Access all future features automatically.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<div class="space-y-lg text-center">
+<div class="flex flex-col gap-sm">
+<button class="w-full h-16 bg-primary text-on-primary font-label-lg text-label-lg rounded-[20px] shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center gap-2">
+                    Upgrade to Premium
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="font-label-sm text-label-sm text-on-surface-variant italic">
+                    Account required only for Premium
+                </p>
+</div>
+<!-- Trust Indicator Cards (Bento Style) -->
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-surface-container-low p-md rounded-2xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">shield</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Secure Checkout</span>
+</div>
+<div class="bg-surface-container-low p-md rounded-2xl flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">verified_user</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Privacy First</span>
+</div>
+</div>
+</div>
+<!-- Featured Premium Asset Preview -->
+<div class="mt-xl">
+<div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-sm group">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A cinematic, high-quality photograph of a professional photographer's minimalist workspace, featuring a sleek silver laptop displaying a vibrant image editing interface with emerald green accents. Soft morning sunlight filters through a nearby window, illuminating the dust motes and creating a serene, focused atmosphere. The setting is clean, modern, and high-end, reinforcing a premium digital tool aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjVpqc9DmecU_dfSMP40VIghIxZ29s5UiGeWudFBW3W3bsvjmgI8B33Wth9i1BfZJqqjJ-Z9_nMhsoMoyKgJkcK9CWRMOJJhBn8Pp8HcWrQ2rQ29MBcw1QKgzBecXujgmxO3CjbnRaylZiU9tE2xPP7o-FCX8rN_lB-_iLDQF2otgpYvZO4CITKAAPyD-4Ee1m_0ecfsS1ZlrlyZPicts4VD7dJTsThgezqRVrgdtx_jmw1ISneMgvNUNT6Yxa9I61X9uWA3HnIs0"/>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="font-label-sm text-label-sm text-white/80">Pro Workflow Visualization</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</div>
+<!-- Active Tab: Premium -->
+<div class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-90 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Premium</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-all active:scale-90 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction: Subtle parallax effect on the card
+        const card = document.querySelector('.premium-card-gradient');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // Reset card position
+        document.addEventListener('mouseleave', () => {
+            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            card.style.transition = 'transform 0.5s ease';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            card.style.transition = 'none';
+        });
+    </script>
+</body></html>

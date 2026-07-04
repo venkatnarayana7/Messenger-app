@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#becabf",
+                        "secondary-container": "#7bf8a1",
+                        "surface": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#005228",
+                        "surface-container-high": "#e8e8e8",
+                        "inverse-primary": "#7adaa1",
+                        "on-primary-fixed": "#002110",
+                        "on-secondary-container": "#007239",
+                        "secondary": "#006d37",
+                        "secondary-fixed-dim": "#61de8a",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-fixed": "#00210c",
+                        "on-tertiary-fixed-variant": "#374b41",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#eeeeee",
+                        "tertiary-container": "#abc2b4",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-variant": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary-fixed": "#0b1f16",
+                        "secondary-fixed": "#7efba4",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed-dim": "#7adaa1",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#005230",
+                        "primary-container": "#6fcf97",
+                        "tertiary": "#4e6358",
+                        "surface-dim": "#dadada",
+                        "outline": "#6e7a70",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#ffffff",
+                        "primary": "#006d41",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#95f7bb",
+                        "tertiary-fixed": "#d0e8d9",
+                        "on-primary-container": "#005733",
+                        "on-surface-variant": "#3e4941",
+                        "tertiary-fixed-dim": "#b5ccbe",
+                        "on-surface": "#1a1c1c",
+                        "surface-tint": "#006d41",
+                        "on-tertiary-container": "#3b5045"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "margin-tablet": "32px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "label-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-lg-mobile": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.04);
+        }
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm z-50 flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-variant/50 transition-colors active:scale-95 transition-transform duration-100 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">History</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-variant/50 transition-colors active:scale-95 transition-transform duration-100 p-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow px-margin-mobile pt-md pb-32">
+<!-- Summary Stats Section (Bentoish) -->
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="glass-card rounded-xl p-md flex flex-col justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Storage Saved</span>
+<span class="text-headline-md font-headline-md text-primary">1.2 GB</span>
+</div>
+<div class="glass-card rounded-xl p-md flex flex-col justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Files Processed</span>
+<span class="text-headline-md font-headline-md text-primary">48</span>
+</div>
+</div>
+<!-- History List -->
+<section class="space-y-4">
+<h2 class="text-label-lg font-label-lg text-on-surface-variant mb-2">Recent Files</h2>
+<!-- History Card 1 -->
+<div class="glass-card rounded-xl p-md flex items-center gap-4 group transition-all duration-300 hover:translate-y-[-2px]">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-inner border border-black/5">
+<img class="w-full h-full object-cover" data-alt="A macro close-up of vibrant tropical leaves with intricate dewdrops, captured in soft morning light with a professional bokeh background. The colors are lush emerald and mint greens, mirroring a clean, high-end mobile app interface for image processing. The aesthetic is crisp and modern, emphasizing detail and high-fidelity rendering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFlXf9UhBXGC_XcabOOdFzN4X2JHH9wY7TGT_u3HAEpcNvCb0B-UsZVnCun3fMrCUpsJ4XhMtfQT-iB-ZRyJ1k4Au9hX18nT2SI25l1zwpDo_KgcPadiD0iZzT8cDjhfiu4nclDsYP1k5_2ZjJfa0BzupNX6Yq570FDEq5HTo7U9_s_TlDC8tx_eYl_Zk5UYw8aKVNd7ak2HVbfiwW_wOAkNn5wJSSiT8cJrCzwlxga4efl8pIrtrTb8V5wzttg4wASb0WRHcbb6I"/>
+</div>
+<div class="flex-grow min-w-0">
+<h3 class="text-body-md font-semibold truncate text-on-surface">tropical_leaf_4k.jpg</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">2.4 MB</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 12, 2:30 PM</span>
+</div>
+</div>
+<div class="flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-primary-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- History Card 2 -->
+<div class="glass-card rounded-xl p-md flex items-center gap-4 group transition-all duration-300 hover:translate-y-[-2px]">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-inner border border-black/5">
+<img class="w-full h-full object-cover" data-alt="A minimalist architectural shot of a brutalist concrete building against a stark, bright white sky. The image uses high-contrast shadows and clean geometric lines to create a sense of professional utility and modern elegance. The color palette is dominated by neutral greys and whites, punctuated by a tiny emerald green logo flag." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3npQNuT37CBprsHjC1aQlNLHI4msDk-aD8qOuEZxhMLPIIJghUJ1Od-pZPRybnyJriVuYGzZRLaQEeGpO1SxKtFKkhrQaAQzElnx4wmB5TvzlW92Iik77mMWNISKi_N07Pu_zEmZCNExic5UoCoJwhTjLJrvI6YudzlwzVSES7GLZvQfUNPQNsRbHgtaqaR2SsPNHgNDWZUXIQ29Ua2GfrWG-GDgrfvewyJFa1LvyJZSmIabPX2IgHPHtla1PRsrvnPDtSLl3uLY"/>
+</div>
+<div class="flex-grow min-w-0">
+<h3 class="text-body-md font-semibold truncate text-on-surface">urban_minimalist.png</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">850 KB</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 11, 10:15 AM</span>
+</div>
+</div>
+<div class="flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-primary-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- History Card 3 -->
+<div class="glass-card rounded-xl p-md flex items-center gap-4 group transition-all duration-300 hover:translate-y-[-2px]">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-inner border border-black/5">
+<img class="w-full h-full object-cover" data-alt="An abstract digital representation of flowing liquid metal in emerald green and silver hues. The texture is hyper-realistic with glossy reflections and deep shadows, suggesting a high-performance image rendering engine. The lighting is focused and dramatic, creating a premium glass-like depth and tactile visual quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUd9kdXOyXAFWGPrVOdNrEHPLf01L-S0q-kPxpYpBbT8G1R3jH_3Nd1PbdusNVjvME4V3IjjLNSJn1IKHn4YZKfD-7hgEPoytqPfmW9sYWdUfw044ZHh49um5R5w7ztQrQKIkAMr0JVIZ78ejTZOFi44pU13VP63NwU6E2-lO64aKIecL28v3zdRK5IGFpero2um7XwuB1KhicF118H7CMSfoOR-Bdwsr1vf9YAmwqzLvEUY-1ivhtJGZd_k4ImQGIDV8rMjvHEVU"/>
+</div>
+<div class="flex-grow min-w-0">
+<h3 class="text-body-md font-semibold truncate text-on-surface">abstract_flow_v2.webp</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">1.1 MB</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 10, 5:45 PM</span>
+</div>
+</div>
+<div class="flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-primary-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- History Card 4 -->
+<div class="glass-card rounded-xl p-md flex items-center gap-4 group transition-all duration-300 hover:translate-y-[-2px]">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container shadow-inner border border-black/5">
+<img class="w-full h-full object-cover" data-alt="A portrait of a person in high-fashion minimalist attire, shot in a bright studio environment with soft-box lighting. The focus is sharp on the eyes, demonstrating superior image enhancement capabilities. The background is a clean, neutral white, allowing the rich textures of the fabric and skin to stand out with professional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnJPHB3DUpOrFU3BGS1k4mcuzaqIQJRVpZt-5jtw5_FB59eYUi4Vv_5EzNgc0reXXdobFGvv-YvyfdUZ_pemYy6E0KSDVxxATYt16WKrAQWfPB6BbPF-HQfxU52j9WcAOUcJkoevlyUUZGMxauQBEO4pkjHGxb7E2OpHKJo7jzmVEHlC_floFq63mbXKHveouN4BvJCXLkMsTpIRdcx6uWdV7z6xd48sOzl-g4HzLObLg1oA5PknwJtTd9EAzrZYMVyHkc1wsj7Uk"/>
+</div>
+<div class="flex-grow min-w-0">
+<h3 class="text-body-md font-semibold truncate text-on-surface">portrait_retouch.jpg</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant">3.7 MB</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Oct 09, 12:20 PM</span>
+</div>
+</div>
+<div class="flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:bg-primary-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">download</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-error hover:bg-error-container/20 rounded-full transition-colors active:scale-90">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Delete History Button -->
+<div class="mt-xl">
+<button class="w-full h-14 flex items-center justify-center gap-2 rounded-xl text-error font-semibold bg-error/10 hover:bg-error/20 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined">delete_sweep</span>
+<span>Delete History</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl flex justify-around items-center px-4 pb-4 pt-2 shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-90 px-4 py-1">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-90 px-4 py-1">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</button>
+<!-- ACTIVE ITEM: History -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-all active:scale-90">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-90 px-4 py-1">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Premium</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-all active:scale-90 px-4 py-1">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+<script>
+        // Simple micro-interaction for list items
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('button')) return; // Don't trigger if button is clicked
+                // Could expand image or show details
+            });
+        });
+
+        // Delete button confirmation simulation
+        const deleteBtn = document.querySelector('.text-error.bg-error\\/10');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear your entire history? This action cannot be undone.')) {
+                    // Logic to clear list would go here
+                    console.log('History cleared');
+                }
+            });
+        }
+    </script>
+</body></html>

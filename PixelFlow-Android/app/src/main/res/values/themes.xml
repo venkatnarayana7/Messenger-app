@@ -1,0 +1,16 @@
+<resources>
+    <!-- Base theme = Material3 Light. No dark mode (per spec v1). -->
+    <style name="Theme.PixelFlow" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/pf_background</item>
+        <item name="android:navigationBarColor">@color/pf_background</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <!-- SplashScreen API (Android 12+) -->
+    <style name="Theme.PixelFlow.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/pf_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.PixelFlow</item>
+    </style>
+</resources>

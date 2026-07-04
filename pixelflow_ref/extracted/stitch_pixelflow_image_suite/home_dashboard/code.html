@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PixelFlow - Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#becabf",
+                    "secondary-container": "#7bf8a1",
+                    "surface": "#f9f9f9",
+                    "on-secondary-fixed-variant": "#005228",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-primary": "#7adaa1",
+                    "on-primary-fixed": "#002110",
+                    "on-secondary-container": "#007239",
+                    "secondary": "#006d37",
+                    "secondary-fixed-dim": "#61de8a",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "on-secondary-fixed": "#00210c",
+                    "on-tertiary-fixed-variant": "#374b41",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "tertiary-container": "#abc2b4",
+                    "inverse-on-surface": "#f0f1f1",
+                    "surface-variant": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-fixed": "#0b1f16",
+                    "secondary-fixed": "#7efba4",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2f3131",
+                    "primary-fixed-dim": "#7adaa1",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#005230",
+                    "primary-container": "#6fcf97",
+                    "tertiary": "#4e6358",
+                    "surface-dim": "#dadada",
+                    "outline": "#6e7a70",
+                    "surface-bright": "#f9f9f9",
+                    "on-error": "#ffffff",
+                    "primary": "#006d41",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#95f7bb",
+                    "tertiary-fixed": "#d0e8d9",
+                    "on-primary-container": "#005733",
+                    "on-surface-variant": "#3e4941",
+                    "tertiary-fixed-dim": "#b5ccbe",
+                    "on-surface": "#1a1c1c",
+                    "surface-tint": "#006d41",
+                    "on-tertiary-container": "#3b5045"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "base": "4px",
+                    "xs": "4px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "margin-tablet": "32px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "label-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Manrope', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #6fcf97 0%, #006d41 100%);
+        }
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface select-none">
+<!-- Top AppBar (from JSON) -->
+<header class="sticky top-0 w-full bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm z-50 flex justify-between items-center px-margin-mobile h-16">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 duration-100">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">PixelFlow</h1>
+</div>
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors p-2 rounded-full active:scale-95 duration-100">more_vert</button>
+</header>
+<main class="px-margin-mobile pt-lg pb-32 max-w-2xl mx-auto">
+<!-- Greeting Section -->
+<section class="mb-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background mb-1">Good morning</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Ready to perfect your images?</p>
+</section>
+<!-- Feature Bento Grid -->
+<div class="grid grid-cols-2 gap-md">
+<!-- Resize Image -->
+<div class="glass-card p-lg rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.04)] active:scale-[0.98] transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center mb-md group-hover:bg-secondary-container/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">aspect_ratio</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface mb-xs">Resize Image</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Scale precisely without quality loss.</p>
+</div>
+<!-- Compress Image -->
+<div class="glass-card p-lg rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.04)] active:scale-[0.98] transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center mb-md group-hover:bg-secondary-container/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">photo_size_select_small</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface mb-xs">Compress Image</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Reduce size while keeping clarity.</p>
+</div>
+<!-- Upscale Image -->
+<div class="glass-card p-lg rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.04)] active:scale-[0.98] transition-all cursor-pointer group col-span-2 flex items-center gap-lg">
+<div class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center group-hover:bg-secondary-container/40 transition-colors shrink-0">
+<span class="material-symbols-outlined text-primary text-[32px]">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface mb-xs">Upscale Image</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enhance resolution using advanced PixelFlow AI engines for professional results.</p>
+</div>
+</div>
+<!-- Convert Format -->
+<div class="glass-card p-lg rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.04)] active:scale-[0.98] transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center mb-md group-hover:bg-secondary-container/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">transform</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface mb-xs">Convert Format</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-tight">PNG, JPG, WEBP, and more.</p>
+</div>
+<!-- Batch Processing -->
+<div class="glass-card p-lg rounded-xl shadow-[0px_8px_24px_rgba(0,0,0,0.04)] active:scale-[0.98] transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center mb-md group-hover:bg-secondary-container/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-[28px]">layers</span>
+</div>
+<h3 class="font-label-lg text-label-lg text-on-surface mb-xs">Batch Processing</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Apply edits to 50+ images at once.</p>
+</div>
+</div>
+<!-- Recent Files Section -->
+<section class="mt-xl">
+<div class="flex justify-between items-end mb-md">
+<h2 class="font-headline-md text-headline-md text-on-background">Recent Files</h2>
+<button class="font-label-lg text-label-lg text-primary">View all</button>
+</div>
+<div class="flex gap-md overflow-x-auto pb-4 scroll-hide -mx-margin-mobile px-margin-mobile">
+<div class="w-40 shrink-0">
+<div class="w-40 h-40 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer mb-2">
+<img class="w-full h-full object-cover" data-alt="A professional high-resolution photography studio setup with soft box lighting and a minimalist aesthetic. The image focuses on a high-end camera lens on a clean white surface with subtle green reflections. Soft emerald green accents punctuate the neutral gray and white workspace environment, creating a premium and focused mood for professional image editing tasks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFGs79LYTGiU4Iip7j0Hv4yHONoFSJ0TP99owj3b2SeuCmSX2IYKnli5TikMnubnM18n3n3GMx8UyberOUsOzdEsyXbPSLuwXSGrphgD9KSJFaLNPc4_7PILPfuQ__oZimDBD7vXTfqp5L-z1rdEdvVn9yC3r5xlnEIN4vy_8g5LzmN1NSuugnSaxh3CUabQr4eU1tTPpkrbRUeY_L0JAk8X1xXyUmDJqF7b4TG0TSTNKdnWDs6N5KZ9xiCzuAf9iWx3-M5KJFKD0"/>
+<div class="absolute inset-0 bg-black/5 group-active:bg-black/10 transition-colors"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface truncate">studio_session_01.jpg</p>
+</div>
+<div class="w-40 shrink-0">
+<div class="w-40 h-40 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer mb-2">
+<img class="w-full h-full object-cover" data-alt="An abstract digital artwork showcasing vibrant emerald green flows and waves of light against a pristine white background. The composition is clean, airy, and minimalist, emphasizing fluid motion and high-end digital precision. Subtle glass-like transparency effects and soft shadows give the composition a modern depth, aligning with a premium professional software aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2Q57xwWbha18drHoJNPY-WEZaKQ_RXYoeaxu7TAJiJloHOQGwHL1eA1cgHK7AhjuKNtadequOON9Uy8zIxocg3rF26weDSWj-CVN2fqcdEcVRw1TeO8kk9RM3RAY1D1U_tl4X38hvGjqBjiKFkSsjV_3Nt24Pggeg6Q0X2aDvA0QAVR7ICZTYrk6bA8mxcEFLCKXIDmCgj72QxnLc5eIyQvwwjQONGRGeBrHc4US8wv9Zow5Kb_PNfiHtDf1Ja4CobIVeZf88Fpc"/>
+<div class="absolute inset-0 bg-black/5 group-active:bg-black/10 transition-colors"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface truncate">abstract_emerald.webp</p>
+</div>
+<div class="w-40 shrink-0">
+<div class="w-40 h-40 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer mb-2">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of an architectural detail featuring brushed aluminum and glass with soft green tinted windows. The lighting is bright and natural, casting soft shadows that highlight the clean lines and professional utility of the structure. The overall mood is sophisticated, clean, and modern, reflecting an efficient and elegant brand personality for creative professionals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJRCYyh2A6rUQ-v-7vUcY3ow7Gw4jOTSTwViMRfLrRZZIJxWlpMRV2k3-j9SMopzl-jOmhaVKNF43s0CynoK-fPOOcIaIHoAKoXeyqUK8mqKD2Uh7ntNoStOJ8EHpLlmb3DxnZrW6ZY-1vaEbrRwEDwaIxu0fVM2Mv_0fMO3DJr0DiG9UIMEyPwFkT9knOjc8w94QAMj3ssoo7DCu-aqYzOe_SPCsBogr53sp5rLk-pEq4EXza4Mi0TY5Xco5cHxBE4E1iZ_uMYAA"/>
+<div class="absolute inset-0 bg-black/5 group-active:bg-black/10 transition-colors"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface truncate">arch_detail_final.png</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-24 right-margin-mobile w-16 h-16 rounded-full gradient-button text-white shadow-lg shadow-primary/30 flex items-center justify-center active:scale-90 transition-all duration-200 z-40 group overflow-hidden">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">add</span>
+<!-- Expanding Label on Desktop Logic (simplified for layout) -->
+<span class="hidden md:block ml-2 font-label-lg pr-4">Select Images</span>
+</button>
+<!-- Bottom Navigation Bar (from JSON) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-[0px_-4px_12px_rgba(0,0,0,0.02)]">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<!-- Tools -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-sm text-label-sm">Tools</span>
+</a>
+<!-- History -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<!-- Premium -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">workspace_premium</span>
+<span class="font-label-sm text-label-sm">Premium</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-low transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.boxShadow = '0px 4px 12px rgba(0, 0, 0, 0.08)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.boxShadow = '0px 8px 24px rgba(0, 0, 0, 0.04)';
+            });
+        });
+    </script>
+</body></html>
