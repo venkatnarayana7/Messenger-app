@@ -60,24 +60,10 @@ fun WelcomeScreen(nav: NavHostController) {
                 .weight(1f)
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.Start
         ) {
-            // Decorative illustration block (soft gradient card)
-            Box(
-                modifier = Modifier
-                    .padding(top = 8.dp)
-                    .fillMaxWidth()
-                    .height(280.dp)
-                    .clip(RoundedCornerShape(24.dp))
-                    .background(brush = brandGradient()),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "Your Toolkit",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = androidx.compose.ui.graphics.Color.White
-                )
-            }
+            // Two overlapping image cards illustration (matches Stitch reference)
+            com.pixelflow.app.ui.components.WelcomeIllustration()
 
             Spacer(Modifier.height(28.dp))
 
@@ -138,6 +124,7 @@ fun WelcomeScreen(nav: NavHostController) {
                     }
                 },
                 trailingArrow = true,
+                useGradient = true,
                 testId = "welcome-continue-button"
             )
             Spacer(Modifier.height(8.dp))

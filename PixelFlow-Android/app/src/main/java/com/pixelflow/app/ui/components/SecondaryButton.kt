@@ -17,12 +17,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.pixelflow.app.ui.theme.Mint
+import androidx.compose.ui.platform.testTag
+import com.pixelflow.app.ui.theme.OnSurface
 import com.pixelflow.app.ui.theme.PrimaryLight
-import com.pixelflow.app.ui.theme.PrimarySecondary
+import com.pixelflow.app.ui.theme.SurfaceContainerHigh
 
 /**
- * Secondary CTA — Mint fill, Emerald label. Used for "Download" and lighter actions.
+ * Secondary CTA — light-mint pill, dark label.
+ * Matches "Download / Save to Device / Download All / Add Images" in the mocks.
  */
 @Composable
 fun SecondaryButton(
@@ -36,10 +38,11 @@ fun SecondaryButton(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(56.dp)
-            .clip(RoundedCornerShape(16.dp))
-            .background(if (enabled) PrimaryLight else Mint)
-            .clickable(enabled = enabled, onClick = onClick),
+            .height(60.dp)
+            .clip(RoundedCornerShape(999.dp))
+            .background(if (enabled) PrimaryLight else SurfaceContainerHigh)
+            .clickable(enabled = enabled, onClick = onClick)
+            .testTag(testId),
         contentAlignment = Alignment.Center
     ) {
         Row(
@@ -48,11 +51,11 @@ fun SecondaryButton(
             modifier = Modifier.padding(horizontal = 20.dp)
         ) {
             if (leadingIcon != null) {
-                Box(Modifier.padding(end = 10.dp).size(20.dp)) { leadingIcon() }
+                Box(Modifier.padding(end = 12.dp).size(22.dp)) { leadingIcon() }
             }
             Text(
                 text = text,
-                color = PrimarySecondary,
+                color = OnSurface,
                 style = MaterialTheme.typography.titleMedium
             )
         }

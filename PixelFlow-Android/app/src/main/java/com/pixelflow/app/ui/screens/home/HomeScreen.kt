@@ -68,7 +68,7 @@ fun HomeScreen(nav: NavHostController) {
                 .fillMaxSize()
                 .padding(bottom = 72.dp) // bottom nav
         ) {
-            PixelFlowTopBar(title = "PixelFlow", onBack = null)
+            PixelFlowTopBar(title = "PixelFlow", onBack = { nav.navigateUp() })
 
             Column(
                 modifier = Modifier

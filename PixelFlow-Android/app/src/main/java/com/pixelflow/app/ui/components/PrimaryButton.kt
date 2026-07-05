@@ -20,13 +20,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.pixelflow.app.ui.theme.PrimaryDeep
 import com.pixelflow.app.ui.theme.brandGradient
 
 /**
- * Primary CTA — gradient fill, 56dp min height, 16dp radius, white text.
- * Enabled state uses the brand gradient (§4 accent gradient).
+ * Primary CTA — solid dark-emerald pill, white label.
+ * Matches every "Resize / Compress & Save / Export Processed Image / Continue"
+ * button in the Stitch reference screens.
+ * Pass `useGradient = true` for the Welcome Continue button (softer L→R fill).
  */
 @Composable
 fun PrimaryButton(
@@ -37,17 +40,20 @@ fun PrimaryButton(
     testId: String,
     leadingIcon: (@Composable () -> Unit)? = null,
     trailingArrow: Boolean = false,
+    useGradient: Boolean = false,
 ) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(56.dp)
-            .clip(RoundedCornerShape(16.dp))
+            .height(60.dp)
+            .clip(RoundedCornerShape(999.dp))
             .then(
-                if (enabled) Modifier.background(brush = brandGradient())
-                else Modifier.background(color = PrimaryDeep.copy(alpha = 0.4f))
+                if (!enabled) Modifier.background(color = PrimaryDeep.copy(alpha = 0.4f))
+                else if (useGradient) Modifier.background(brush = brandGradient())
+                else Modifier.background(color = PrimaryDeep)
             )
-            .clickable(enabled = enabled, onClick = onClick),
+            .clickable(enabled = enabled, onClick = onClick)
+            .testTag(testId),
         contentAlignment = Alignment.Center
     ) {
         Row(
@@ -56,7 +62,7 @@ fun PrimaryButton(
             modifier = Modifier.padding(horizontal = 20.dp)
         ) {
             if (leadingIcon != null) {
-                Box(Modifier.padding(end = 10.dp).size(20.dp)) { leadingIcon() }
+                Box(Modifier.padding(end = 12.dp).size(22.dp)) { leadingIcon() }
             }
             Text(
                 text = text,
@@ -68,7 +74,7 @@ fun PrimaryButton(
                     imageVector = Icons.Filled.ArrowForward,
                     contentDescription = null,
                     tint = Color.White,
-                    modifier = Modifier.padding(start = 10.dp).size(20.dp)
+                    modifier = Modifier.padding(start = 12.dp).size(22.dp)
                 )
             }
         }

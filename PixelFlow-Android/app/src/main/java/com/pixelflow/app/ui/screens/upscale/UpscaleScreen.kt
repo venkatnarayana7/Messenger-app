@@ -37,8 +37,8 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.pixelflow.app.domain.model.InterpolationMethod
 import com.pixelflow.app.ui.components.BottomNavBar
+import com.pixelflow.app.ui.components.FactorPill
 import com.pixelflow.app.ui.components.ImagePickerBox
-import com.pixelflow.app.ui.components.PixelChip
 import com.pixelflow.app.ui.components.PixelFlowTopBar
 import com.pixelflow.app.ui.components.PrimaryButton
 import com.pixelflow.app.ui.navigation.Routes
@@ -121,11 +121,11 @@ fun UpscaleScreen(nav: NavHostController) {
                         .padding(16.dp)
                 ) {
                     Text("Scaling Factor", style = MaterialTheme.typography.titleMedium, color = OnSurface)
-                    Spacer(Modifier.height(8.dp))
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Spacer(Modifier.height(10.dp))
+                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         listOf(2, 4, 8).forEach { f ->
-                            PixelChip(
-                                text = "${f}x",
+                            FactorPill(
+                                label = "${f}x",
                                 selected = s.factor == f,
                                 testId = "upscale-factor-$f",
                                 onClick = { vm.setFactor(f) },
@@ -133,7 +133,7 @@ fun UpscaleScreen(nav: NavHostController) {
                             )
                         }
                     }
-                    Spacer(Modifier.height(6.dp))
+                    Spacer(Modifier.height(10.dp))
                     Text("Upscaling to 8× may result in a significantly larger file.",
                         style = MaterialTheme.typography.labelSmall, color = OnSurfaceVariant)
                 }
@@ -147,21 +147,25 @@ fun UpscaleScreen(nav: NavHostController) {
                         .padding(16.dp)
                 ) {
                     Text("Methodology", style = MaterialTheme.typography.titleMedium, color = OnSurface)
-                    Spacer(Modifier.height(8.dp))
-                    FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        InterpolationMethod.entries.forEach { m ->
-                            PixelChip(
-                                text = m.displayName,
-                                selected = s.method == m,
-                                testId = "upscale-method-${m.name.lowercase()}",
-                                onClick = { vm.setMethod(m) }
-                            )
+                    Spacer(Modifier.height(10.dp))
+                    val methods = InterpolationMethod.entries
+                    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        methods.chunked(2).forEach { rowMethods ->
+                            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                rowMethods.forEach { m ->
+                                    FactorPill(
+                                        label = m.displayName,
+                                        selected = s.method == m,
+                                        testId = "upscale-method-${m.name.lowercase()}",
+                                        onClick = { vm.setMethod(m) },
+                                        modifier = Modifier.weight(1f)
+                                    )
+                                }
+                                if (rowMethods.size == 1) Box(modifier = Modifier.weight(1f))
+                            }
                         }
                     }
-                    Spacer(Modifier.height(6.dp))
+                    Spacer(Modifier.height(8.dp))
                     Text(
                         text = s.method.description,
                         style = MaterialTheme.typography.labelSmall, color = OnSurfaceVariant

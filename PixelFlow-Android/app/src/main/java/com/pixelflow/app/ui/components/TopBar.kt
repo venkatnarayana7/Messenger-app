@@ -20,10 +20,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.pixelflow.app.ui.theme.OnSurfaceVariant
 import com.pixelflow.app.ui.theme.PrimaryDeep
+import com.pixelflow.app.ui.theme.PrimarySecondary
 
+/**
+ * PixelFlow top bar.
+ * - With `onBack`: title is CENTERED (matches Resize/Compress/Upscale/Home in the mocks).
+ * - Without `onBack`: title is LEFT-ALIGNED (matches Welcome screen).
+ */
 @Composable
 fun PixelFlowTopBar(
     title: String,
@@ -40,39 +47,42 @@ fun PixelFlowTopBar(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
-                .padding(horizontal = 8.dp),
+                .height(56.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (onBack != null) {
-                Box(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clickable(onClick = onBack)
-                        .testTag("top-bar-back"),
-                    contentAlignment = Alignment.Center
-                ) {
+            // Leading slot (back arrow or spacer)
+            Box(
+                modifier = Modifier.size(56.dp)
+                    .then(
+                        if (onBack != null) Modifier.clickable(onClick = onBack).testTag("top-bar-back")
+                        else Modifier
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                if (onBack != null) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
                         contentDescription = "Back",
-                        tint = PrimarySecondaryOrDefault()
+                        tint = PrimarySecondary
                     )
                 }
-            } else {
-                Box(Modifier.size(48.dp))
             }
+
+            // Title — centered if back present, left otherwise
             Text(
                 text = title,
                 style = MaterialTheme.typography.headlineSmall,
                 color = titleColor,
+                textAlign = if (onBack != null) TextAlign.Center else TextAlign.Start,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(start = 4.dp)
+                    .padding(start = if (onBack != null) 0.dp else 4.dp)
                     .testTag("top-bar-title")
             )
+
+            // Trailing "more" slot
             Box(
-                modifier = Modifier
-                    .size(48.dp)
+                modifier = Modifier.size(56.dp)
                     .clickable(enabled = onMore != null) { onMore?.invoke() }
                     .testTag("top-bar-more"),
                 contentAlignment = Alignment.Center
@@ -86,6 +96,3 @@ fun PixelFlowTopBar(
         }
     }
 }
-
-@Composable
-private fun PrimarySecondaryOrDefault(): Color = com.pixelflow.app.ui.theme.PrimarySecondary

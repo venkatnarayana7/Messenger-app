@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Build
@@ -104,9 +105,13 @@ private fun androidx.compose.foundation.layout.RowScope.NavItemView(
     ) {
         Box(
             modifier = Modifier
-                .size(if (selected) 40.dp else 32.dp)
-                .clip(CircleShape)
-                .background(if (selected) PrimaryLight else androidx.compose.ui.graphics.Color.Transparent),
+                .then(
+                    if (selected) Modifier
+                        .width(56.dp).height(32.dp)
+                        .clip(androidx.compose.foundation.shape.RoundedCornerShape(999.dp))
+                        .background(PrimaryLight)
+                    else Modifier.size(32.dp)
+                ),
             contentAlignment = Alignment.Center
         ) {
             Icon(

@@ -74,7 +74,7 @@ fun CompressScreen(nav: NavHostController) {
                     )
                 } else {
                     Box(
-                        modifier = Modifier.fillMaxWidth().height(220.dp)
+                        modifier = Modifier.fillMaxWidth().height(240.dp)
                             .clip(RoundedCornerShape(20.dp))
                     ) {
                         AsyncImage(
@@ -83,6 +83,7 @@ fun CompressScreen(nav: NavHostController) {
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
                         )
+                        // Bottom-left: Original size pill (dark green)
                         Box(
                             modifier = Modifier
                                 .align(Alignment.BottomStart)
@@ -95,6 +96,28 @@ fun CompressScreen(nav: NavHostController) {
                                 "Original: ${FormatUtil.formatBytes(s.originalSize)}",
                                 style = MaterialTheme.typography.labelLarge, color = Color.White
                             )
+                        }
+                        // Bottom-right: Compare pill (white)
+                        Row(
+                            modifier = Modifier
+                                .align(Alignment.BottomEnd)
+                                .padding(12.dp)
+                                .clip(RoundedCornerShape(999.dp))
+                                .background(Color.White)
+                                .padding(horizontal = 14.dp, vertical = 8.dp)
+                                .testTag("compress-compare"),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                androidx.compose.material.icons.Icons.Filled.Compare,
+                                contentDescription = null,
+                                tint = PrimaryDeep,
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(Modifier.size(6.dp))
+                            Text("Compare",
+                                style = MaterialTheme.typography.titleMedium,
+                                color = PrimaryDeep)
                         }
                     }
                 }
@@ -194,7 +217,7 @@ fun CompressScreen(nav: NavHostController) {
                 )
                 Spacer(Modifier.height(12.dp))
                 SecondaryButton(
-                    text = if (s.savedUri != null) "Saved to Gallery" else "Waiting…",
+                    text = "Download High-Res",
                     onClick = {},
                     enabled = s.savedUri != null,
                     testId = "compress-download-button"
