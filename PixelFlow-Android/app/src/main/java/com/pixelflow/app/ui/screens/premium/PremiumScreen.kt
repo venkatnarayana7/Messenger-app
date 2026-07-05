@@ -86,7 +86,7 @@ fun PremiumScreen(nav: NavHostController) {
                         style = MaterialTheme.typography.displayLarge, color = Color.White)
                     Spacer(Modifier.height(12.dp))
                     Text(
-                        "Remove all limits. Same tools. Same privacy. No ads, no watermarks, no AI.",
+                        "Remove all limits. Same tools. Same privacy — nothing extra, no tracking.",
                         style = MaterialTheme.typography.bodyLarge,
                         color = Color.White.copy(alpha = 0.9f)
                     )
